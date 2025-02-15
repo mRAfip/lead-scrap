@@ -18,28 +18,16 @@ app.post('/scrape', async (req, res) => {
   const browser = await puppeteer.launch();
   const page = await browser.newPage();
 
-  // Example: Scrape LinkedIn (replace with actual scraping logic)
-  await page.goto(`https://www.linkedin.com/search/results/companies/?keywords=${category}&location=${location}`);
-
-  // Extract data (this is a placeholder - you'll need to customize this)
-  const data = await page.evaluate(() => {
-    const results = [];
-    const items = document.querySelectorAll('.company-result');
-    items.forEach((item) => {
-      const name = item.querySelector('.company-name')?.innerText || 'N/A';
-      const website = item.querySelector('.company-website')?.innerText || 'N/A';
-      results.push({
-        firstName: name.split(' ')[0],
-        companyName: name,
-        website,
-        contactNumber: 'N/A',
-        email: 'N/A',
-      });
-    });
-    return results.slice(0, 100); // Return first 100 results
-  });
-
-  await browser.close();
+  // Simulate scraped data
+  const data = [
+    {
+      firstName: 'John',
+      companyName: 'Example Corp',
+      website: 'https://example.com',
+      contactNumber: '123-456-7890',
+      email: 'john@example.com',
+    },
+  ];
   res.json(data);
 });
 
