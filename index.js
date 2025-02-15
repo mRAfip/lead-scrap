@@ -11,12 +11,9 @@ app.get('/', (req, res) => {
   res.send('Backend is running!');
 });
 
+// Scrape route
 app.post('/scrape', async (req, res) => {
   const { category, location } = req.body;
-
-  // Launch Puppeteer
-  const browser = await puppeteer.launch();
-  const page = await browser.newPage();
 
   // Simulate scraped data
   const data = [
@@ -28,6 +25,7 @@ app.post('/scrape', async (req, res) => {
       email: 'john@example.com',
     },
   ];
+
   res.json(data);
 });
 
